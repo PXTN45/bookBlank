@@ -1,0 +1,9 @@
+body {
+    /* background-color: black; */
+
+    padding: 20px;
+}
+.container #img {
+    height: 200px;
+    width: 200px;
+}

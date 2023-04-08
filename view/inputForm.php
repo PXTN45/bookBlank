@@ -11,72 +11,64 @@
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-<div class="col-3"></div>
-<div class="col-6"> 
+  <br><br><br>
+  <?php
+    $json = file_get_contents("./databank.json");
+    // print_r(json_decode($json));
+    $data_bank = json_decode($json);
+    ?>
+  <center>
+
 <form method="post" action="../controller/contromoney.php">
     <div class="container-md mt-4">
-        <center>
             <h1>เพิ่มคอร์ส</h1>
             <div  class="col-4"></div>
             <div class="col-4"> 
+
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name = "firstname" placeholder="Password">
+                <input type="text" class="form-control" id="firstname" name = "firstname" placeholder="firstname">
                 <label for="floatingPassword">firstname</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name = "lastname" placeholder="name@example.com">
+                <input type="text" class="form-control" id="lastname" name = "lastname" placeholder="lastname">
                 <label for="floatingInput">lastname</label>
             </div>
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" name = "wallet" placeholder="name@example.com">
+                <input type="text" class="form-control" id="wallet" name = "wallet" placeholder="wallet">
                 <label for="floatingInput">wallet</label>
             </div>
-            </div>
-            <div class="col-4"></div>
 
+            <!-- <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="image" name = "image" placeholder="image">
+                <label for="floatingInput">image</label>
+            </div> -->
+            <!-- </center> -->
+                <!-- <p class="text-lg text-gray-800 mt-5 mb-5">เลือกธนาคาร</p> -->
+
+                <form action="/view/showdata.php">
+                <select id="bank" name="bank"
+                    class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>เลือกธนาคาร</option>
+                    <?php
+                    foreach ($data_bank as $value) {
+                        ?>
+                        <option value="<?= $value->id ?>">
+                            <?= $value->bank_name ?>
+                        </option>
+
+                    <?php } ?>
+                </select>
+    </form>
+            </div>
+            <!-- <center> -->
             <button type="submite" class="btn btn-success">เพิ่มข้อมูล</button>
         </center>
     </div>
 </div>
-<div class="col-3"></div>
+</form>
+
 
 </body>
 </html>
